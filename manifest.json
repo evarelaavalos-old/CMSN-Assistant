@@ -10,7 +10,7 @@
     "content_scripts": [
         {
             "js": ["content.js"],
-            "matches": ["https://cmsn.evweb.com.ar/*", "http://cmsn.evweb.com.ar/*"]
+            "matches": ["*://cmsn.evweb.com.ar/*"]
         }
     ],
     "permissions": [
