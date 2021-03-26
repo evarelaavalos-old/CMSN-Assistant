@@ -15,7 +15,7 @@ function addEventToSubmitButton() {
     // and they do not need to be removed manually with the removeEventListener method.
     // See https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
     const button = getSubmitButton();
-    button.addEventListener('click', captureData);
+    button.addEventListener('click', storeBill);
 }
 
 function getSubmitButton() {
@@ -44,8 +44,9 @@ function getSubmitButton() {
     return button || undefined;
 }    
 
-function captureData() {
-    //Do Something...
+function storeData() {
+    const bill = new Bill();
+    // Store the bill somewhere using bill.toObject()
 }
 
 addEventToSubmitButton();

@@ -4,12 +4,12 @@
     "version": "0.1.0",
     "description": "Capture submited billings and save them for later review!",
     "background": {
-        "scripts": ["background.js"],
-        "persistent": false 
+        "scripts": ["background.js", "bill.js"],
+        "persistent": false
     },
     "content_scripts": [
         {
-            "js": ["content.js"],
+            "js": ["content.js", "bill.js"],
             "matches": ["*://cmsn.evweb.com.ar/*"]
         }
     ],
