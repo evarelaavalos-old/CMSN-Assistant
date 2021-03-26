@@ -1,6 +1,22 @@
-console.log(`Is this working?`);
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    switch (message.type) {
+        case 'SEARCH_SUBMIT_BUTTON':
+            getSubmitButton();
+            break;
+        default:
+            console.log(`Command ${command} not founded`);
+    }
+});
 
-let BUTTON_FOUNDED = false;
+function addEventToSubmitButton() {
+    // If multiple identical EventListeners are registered on the same
+    // EventTarget with the same parameters, the duplicate instances are
+    // discarded. They do not cause the EventListener to be called twice,
+    // and they do not need to be removed manually with the removeEventListener method.
+    // See https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
+    const button = getSubmitButton();
+    button.addEventListener('click', captureData);
+}
 
 function getSubmitButton() {
     console.log(`The function getSubmitButton() is executing.`);
@@ -15,24 +31,21 @@ function getSubmitButton() {
             let innerDoc = iframe.contentDocument || iframe.contentWindow.document;
             button = innerDoc.querySelector('a#ctl00_body_btnEnviarPractica');
 
-            if (button !== undefined && button !== null) {
-                BUTTON_FOUNDED = true;
+            if (!(button === undefined || button === null)) {
                 break;
-            }
-        }
-    } else {
-        BUTTON_FOUNDED = true;
+            }    
+        }    
     }
 
-    BUTTON_FOUNDED
-        ? console.log('Submit button founded')
-        : console.log('Submit button not founded');
+    console.log( (button === undefined || button === null) 
+        ? 'Submit button not founded' 
+        : 'Submit button founded', button);
 
-    console.log(button);
+    return button || undefined;
+}    
 
-    return button;
+function captureData() {
+    //Do Something...
 }
 
-getSubmitButton();
-
-// setInterval(getSubmitButton, 10000);
+addEventToSubmitButton();
