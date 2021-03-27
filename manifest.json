@@ -9,7 +9,7 @@
     },
     "content_scripts": [
         {
-            "js": ["content.js", "bill.js"],
+            "js": ["content.js", "bill.js", "domLocator.js"],
             "matches": ["*://cmsn.evweb.com.ar/*"]
         }
     ],

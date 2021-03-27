@@ -1,12 +1,39 @@
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     switch (message.type) {
         case 'SEARCH_SUBMIT_BUTTON':
-            getSubmitButton();
+            addEventToSubmitButton();
             break;
         default:
             console.log(`Command ${command} not founded`);
     }
 });
+
+function getSubmitButton() {
+    let domLocator = new DomLocator();
+    let button = domLocator.deepQuerySelector('a#ctl00_body_btnEnviarPractica');
+
+    return button;
+}    
+
+function createBill() {
+    const bill = new Bill();
+    bill.voucherNumber = 'Ambulatorio';
+    bill.populateFromDom({
+        date: 'input#ctl00_body_txtFechaRealizacion',
+        fullName: 'input#ctl00_body_txtNombreApellido',
+        affiliateNumber: 'input#ctl00_body_txtNroAfiliado',
+        tokenNumber: 'input#UNKNOWN',
+        diagnosis: 'input#ctl00_body_txtCodigoCie10',
+        practice: 'input#ctl00_body_txtCodigoPractica',
+    });
+
+    return bill;
+}
+
+function storeBill() {
+    const bill = createBill();
+    //Store it somewhere
+}
 
 function addEventToSubmitButton() {
     // If multiple identical EventListeners are registered on the same
@@ -16,37 +43,6 @@ function addEventToSubmitButton() {
     // See https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
     const button = getSubmitButton();
     button.addEventListener('click', storeBill);
-}
-
-function getSubmitButton() {
-    console.log(`The function getSubmitButton() is executing.`);
-    let button = document.querySelector('a#ctl00_body_btnEnviarPractica');
-
-    //If not founded, search inside iframes
-    if (button === undefined || button === null) {
-        console.log(`Searching inside iframes`);
-        let iframes = document.getElementsByTagName('iframe');
-        
-        for (iframe of iframes) {
-            let innerDoc = iframe.contentDocument || iframe.contentWindow.document;
-            button = innerDoc.querySelector('a#ctl00_body_btnEnviarPractica');
-
-            if (!(button === undefined || button === null)) {
-                break;
-            }    
-        }    
-    }
-
-    console.log( (button === undefined || button === null) 
-        ? 'Submit button not founded' 
-        : 'Submit button founded', button);
-
-    return button || undefined;
-}    
-
-function storeData() {
-    const bill = new Bill();
-    // Store the bill somewhere using bill.toObject()
 }
 
 addEventToSubmitButton();

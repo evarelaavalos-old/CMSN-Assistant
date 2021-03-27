@@ -4,45 +4,34 @@ class Bill {
         this.date = '';
         this.fullName = '';
         this.affiliateNumber = 0;
-        this.voucherNumber = 'Ambulatorio';
+        this.voucherNumber = '';
         this.tokenNumber = 0;
         this.diagnosis = '';
         this.practice = '';
         this.registeredDate = Date.now();
     }
 
-    getDateFromDOM = () => {
+    populateFromDom = (querySelectors) => {
+        if (!querySelectors) return;
 
-    }
-
-    getFullNameFromDOM = () => {
-
-    }
-
-    getAffiliateNumberFromDOM = () => {
-
-    }
-
-    getTokenNumberFromDOM = () => {
-        
-    }
-
-    getDiagnosisFromDOM = () => {
-
-    }
-
-    getPracticeFromDOM = () => {
-
+        const domLocator = new DomLocator();
+        for (let property in querySelectors) {
+            if (property in this) {
+                this[property] = domLocator.deepQuerySelector(querySelectors[property]);
+            }
+        }
     }
 
     toObject = () => {
-        date: this.date;
-        fullName: this.fullName;
-        affiliateNumber: this.affiliateNumber;
-        voucherNumber: this.voucherNumber;
-        tokeNumber: this.tokenNumber;
-        diagnosis: this.diagnosis;
-        practice: this.practice;
-        registeredDate: this.RegisteredDate;
+        return {
+            date: this.date,
+            fullName: this.fullName,
+            affiliateNumber: this.affiliateNumber,
+            voucherNumber: this.voucherNumber,
+            tokenNumber: this.tokenNumber,
+            diagnosis: this.diagnosis,
+            practice: this.practice,
+            registeredDate: this.RegisteredDate,
+        };
     }
 }
