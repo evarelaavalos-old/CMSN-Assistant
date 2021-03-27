@@ -11,13 +11,18 @@ class Bill {
         this.registeredDate = Date.now();
     }
 
-    populateFromDom = (querySelectors) => {
+    populateFromDom = (querySelectors, attribute = 'value', callback = undefined) => {
         if (!querySelectors) return;
 
         const domLocator = new DomLocator();
         for (let property in querySelectors) {
             if (property in this) {
-                this[property] = domLocator.deepQuerySelector(querySelectors[property]);
+                let element = domLocator.deepQuerySelector(querySelectors[property]);
+                if (element) {
+                    this[property] = callback ?
+                        callback(element.getAttribute(attribute) || '') :
+                        element.getAttribute(attribute) || '';
+                }
             }
         }
     }

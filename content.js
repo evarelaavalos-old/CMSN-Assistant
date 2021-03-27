@@ -18,14 +18,21 @@ function getSubmitButton() {
 function createBill() {
     const bill = new Bill();
     bill.voucherNumber = 'Ambulatorio';
+    
     bill.populateFromDom({
         date: 'input#ctl00_body_txtFechaRealizacion',
         fullName: 'input#ctl00_body_txtNombreApellido',
         affiliateNumber: 'input#ctl00_body_txtNroAfiliado',
-        tokenNumber: 'input#UNKNOWN',
         diagnosis: 'input#ctl00_body_txtCodigoCie10',
         practice: 'input#ctl00_body_txtCodigoPractica',
     });
+    
+    bill.populateFromDom({
+        tokenNumber: 'input#UNKNOWN',
+    },'value', (value) => {
+        //Apply some filters to value
+        return value;
+    })
 
     return bill;
 }
