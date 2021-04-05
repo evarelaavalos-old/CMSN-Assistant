@@ -14,10 +14,9 @@ class Bill {
     populateFromDom = (querySelectors, attribute = 'value', callback = undefined) => {
         if (!querySelectors) return;
 
-        const domLocator = new DomLocator();
         for (let property in querySelectors) {
             if (property in this) {
-                let element = domLocator.deepQuerySelector(querySelectors[property]);
+                let element = DomLocator.deepQuerySelector(querySelectors[property]);
                 if (element) {
                     this[property] = callback ?
                         callback(element.getAttribute(attribute) || '') :

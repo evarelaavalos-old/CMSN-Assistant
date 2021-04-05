@@ -1,5 +1,5 @@
 class DomLocator {
-    deepQuerySelector = (selector) => {
+    static deepQuerySelector = (selector) => {
         let element = document.querySelector(selector);
     
         //If not founded, search inside iframes

@@ -9,9 +9,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 });
 
 function getSubmitButton() {
-    let domLocator = new DomLocator();
-    let button = domLocator.deepQuerySelector('a#ctl00_body_btnEnviarPractica');
-
+    let button = DomLocator.deepQuerySelector('a#ctl00_body_btnEnviarPractica');
     return button;
 }    
 
