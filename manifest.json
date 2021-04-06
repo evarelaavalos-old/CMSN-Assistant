@@ -3,6 +3,9 @@
     "name": "CMSN Assistant",
     "version": "0.2.0",
     "description": "Capture submited billings and save them for later review!",
+    "browser_action": {
+        "default_popup": "popup.html"
+    },
     "background": {
         "scripts": ["background.js", "bill.js"],
         "persistent": false
