@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "CMSN Assistant",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Capture submited billings and save them for later review!",
     "background": {
         "scripts": ["background.js"],
@@ -9,8 +9,8 @@
     },
     "content_scripts": [
         {
-            "js": ["content.js"],
-            "matches": ["https://cmsn.evweb.com.ar/*", "http://cmsn.evweb.com.ar/*"]
+            "js": ["content.js", "bill.js", "domLocator.js"],
+            "matches": ["*://cmsn.evweb.com.ar/*"]
         }
     ],
     "permissions": [
