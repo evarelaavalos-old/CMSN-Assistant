@@ -14,4 +14,29 @@ class DomLocator {
         }
         return element;
     }
+
+    static getMultipleElements = selectors =>
+        Object.entries(selectors).reduce(
+            (acc, [key, value]) => ({
+                ...acc,
+                [key]: this.deepQuerySelector(value)
+            }),
+            {}
+        )
+        
+    static getMultipleValues = elements => 
+        Object.entries(elements).reduce(
+            (acc, [key, value]) => {
+                return value
+                ? ({
+                    ...acc,
+                    [key]: value.getAttribute('value') || ''
+                })
+                : ({
+                    ...acc,
+                    [key]: undefined,
+                });
+            },
+            {}
+        )
 }
