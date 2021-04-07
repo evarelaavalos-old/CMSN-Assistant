@@ -17,6 +17,7 @@
     --clr-highlight: #0984e3;
     --clr-light: #fff;
     --clr-gray-20: #dfe6e9;
+    --clr-gray-30: #c5ced2;
     --clr-gray-40: #b2bec3;
     --clr-gray-60: #636e72;
     --clr-gray-80: #2d3436;
@@ -56,6 +57,7 @@ a {
 body {
     font-family: var(--primary-font);
     font-size: var(--font-size-m);
+    letter-spacing: -0.15px;
 }
 
 #container {
@@ -72,7 +74,7 @@ body {
     border-bottom: 1px solid var(--clr-gray-20);
     background: var(--clr-primary);
     height: 40px;
-    padding: 15px;
+    padding: 15px 20px;
 }
 
 #items-list {
@@ -144,4 +146,10 @@ body {
 .vertical-align {
     display: flex;
     align-items: center;
+}
+
+#empty-list {
+    font-size: var(--font-size-s);
+    font-weight: var(--font-weight-semibold);
+    color: var(--clr-gray-20);
 }
