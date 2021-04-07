@@ -134,8 +134,12 @@ body {
 
 #show-more {
     height: 50px;
-    width: 100%;
     box-shadow: var(--shadow-bold);
+}
+
+#show-more > a {
+    height: 100%;
+    width: 100%;
 }
 
 .grid-center {
