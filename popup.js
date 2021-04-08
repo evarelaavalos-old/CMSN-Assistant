@@ -1,8 +1,4 @@
-document.addEventListener('DOMContentLoaded', async () => {
-    
-    await displayBills();
-
-});
+document.addEventListener('DOMContentLoaded', async () => await displayBills());
 
 const displayBills = (function(){
     
@@ -43,7 +39,7 @@ const displayBills = (function(){
                 billElement.innerHTML += patient;
                 billElement.innerHTML += token;
                 
-                //Append them into the list
+                //Append the bill to the list
                 items.appendChild(billElement);
             }
         }
