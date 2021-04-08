@@ -5,11 +5,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 const displayBills = (function(){
+    
+    const MAX_BILLS = 5;
     const emptyElement = document.getElementById('empty-list');
     
     return async function() {
+        //Getting the bills from the storage
         const savedBills = await BillService.getBills();
-        
+        const bills = savedBills.slice(0, MAX_BILLS);
+
         //Hide the "show more" button
         const showMoreButton = document.getElementById('show-more');
         showMoreButton.setAttribute('hidden', '');
@@ -19,29 +23,28 @@ const displayBills = (function(){
         items.innerHTML = '';
         items.append(emptyElement);
         
-        if (savedBills.length) {
+        if (bills.length) {
             //Show the "show more" button
             showMoreButton.removeAttribute('hidden');
         
             //Remove the empty message from the items list
             items.removeChild(emptyElement);
         
-            //Display max 5 bills
-            let maxBills = 5;
-            for (let i = 0; (i < savedBills.length) && (i < maxBills); i++) {
+            //Display the bills
+            for (bill in bills) {
                 //Create the elements for the bills
-                const { fullName, affiliateNumber, tokenNumber } = savedBills[i];
+                const { fullName, affiliateNumber, tokenNumber } = bill;
                 
                 const patient = getPatientHtml(fullName, affiliateNumber);
                 const token = getTokenHtml(tokenNumber);
-
-                const bill = document.createElement('div');
-                bill.className = 'item';
-                bill.innerHTML += patient;
-                bill.innerHTML += token;
+    
+                const billElement = document.createElement('div');
+                billElement.className = 'item';
+                billElement.innerHTML += patient;
+                billElement.innerHTML += token;
                 
                 //Append them into the list
-                items.appendChild(bill);
+                items.appendChild(billElement);
             }
         }
     }
