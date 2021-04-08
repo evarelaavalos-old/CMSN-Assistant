@@ -1,0 +1,159 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+/* 
+    Colors from American Palette:
+    https://flatuicolors.com/palette/us
+    Font "Open Sans":
+    https://fonts.google.com/specimen/Open+Sans
+*/
+
+:root {
+	--primary-font: 'Open Sans', sans-serif;
+    --clr-primary: #74b9ff;
+    --clr-highlight: #0984e3;
+    --clr-light: #fff;
+    --clr-gray-20: #dfe6e9;
+    --clr-gray-30: #c5ced2;
+    --clr-gray-40: #b2bec3;
+    --clr-gray-60: #636e72;
+    --clr-gray-80: #2d3436;
+    --font-size-xs: 12px;
+    --font-size-s: 14px;
+    --font-size-m: 16px;
+    --font-size-l: 18px;
+    --font-size-xl: 22px;
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --shadow-bold:
+        rgba(0, 0, 0, 0.25) 0px 54px 55px,
+        rgba(0, 0, 0, 0.12) 0px -12px 30px,
+        rgba(0, 0, 0, 0.12) 0px 4px 6px,
+        rgba(0, 0, 0, 0.17) 0px 12px 13px,
+        rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p {
+    margin: 0;
+}
+
+a {
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-s);
+    color: var(--clr-highlight);
+    text-decoration: none;
+}
+
+body {
+    font-family: var(--primary-font);
+    font-size: var(--font-size-m);
+    letter-spacing: -0.15px;
+}
+
+#container {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    max-height: 450px;
+    width: 400px;
+}
+
+#title {
+    color: var(--clr-light);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-s);
+    border-bottom: 1px solid var(--clr-gray-20);
+    background: var(--clr-primary);
+    height: 40px;
+    padding: 15px 20px;
+}
+
+#items-list {
+    padding: 0;
+    height: auto;
+    overflow-y: auto;
+}
+
+/* Not Supported by Firefox */
+#items-list::-webkit-scrollbar {
+    width: 0.35rem;
+}
+
+#items-list::-webkit-scrollbar-track {
+    background: var(--clr-light);
+}
+
+#items-list::-webkit-scrollbar-thumb {
+    background: var(--clr-gray-40);
+    border-radius: 15px;
+}
+
+.item {
+    height: 120px;
+    border-bottom: 1px solid var(--clr-gray-20);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 15px;
+}
+
+.patient-fullname {
+    font-size: var(--font-size-l);
+    font-weight: var(--font-weight-regular);
+    margin-bottom: 0.25rem;
+}
+
+.patient-affiliate-number {
+    font-size: var(--font-size-s);
+    font-weight: var(--font-weight-light);
+}
+
+.token {
+    font-size: var(--font-size-m);
+    font-weight: var(--font-weight-regular);
+    color: var(--clr-highlight);
+}
+
+.token-number {
+    font-weight: var(--font-weight-semibold);
+}
+
+.item:last-of-type {
+    border-bottom: none;
+}
+
+#show-more {
+    height: 50px;
+    box-shadow: var(--shadow-bold);
+}
+
+#show-more > a {
+    height: 100%;
+    width: 100%;
+}
+
+.grid-center {
+    display: grid;
+    place-items: center;
+}
+
+.vertical-align {
+    display: flex;
+    align-items: center;
+}
+
+#empty-list {
+    font-size: var(--font-size-s);
+    font-weight: var(--font-weight-semibold);
+    color: var(--clr-gray-20);
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CMSN Assistant</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div id="container">
+        <div id="title" class="vertical-align">Facturaciones</div>
+        <div id="items-list">
+            <div id="empty-list" class="grid-center item">
+                <p>No tienes facturaciones almacenadas.</p>
+            </div>
+        </div>
+        <div id="show-more" hidden>
+            <a class="grid-center" href="http://">
+                Ver todas las facturaciones
+            </a>
+        </div>
+    </div>
+    <script src="popup.js"></script>
+    <script src="bill.js"></script>
+    <script src="billService.js"></script>
+</body>
+</html>
