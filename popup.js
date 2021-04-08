@@ -31,7 +31,7 @@ const displayBills = (function(){
             items.removeChild(emptyElement);
         
             //Display the bills
-            for (bill in bills) {
+            for (bill of bills) {
                 //Create the elements for the bills
                 const { fullName, affiliateNumber, tokenNumber } = bill;
                 
