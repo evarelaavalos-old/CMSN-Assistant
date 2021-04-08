@@ -32,34 +32,13 @@ const displayBills = (function(){
                 //Create the elements for the bills
                 const { fullName, affiliateNumber, tokenNumber } = savedBills[i];
                 
-                const patientFullname = document.createElement('h2');
-                patientFullname.classList.add('patient-fullname');
-                patientFullname.appendChild(document.createTextNode(fullName))
-                
-                const patientAffiliateNumber = document.createElement('p');
-                patientAffiliateNumber.classList.add('patient-affiliate-number');
-                patientAffiliateNumber.appendChild(document.createTextNode(
-                `Nro. de Afiliado: ${affiliateNumber}`))
-                
-                const billPatient = document.createElement('div');
-                billPatient.classList.add('patient');
-                billPatient.appendChild(patientFullname);
-                billPatient.appendChild(patientAffiliateNumber);
-                
-                const tokenNumberElement = document.createElement('span');
-                tokenNumberElement.classList.add('token-number');
-                tokenNumberElement.appendChild(document.createTextNode(tokenNumber));
-                
-                const billToken = document.createElement('h4');
-                billToken.classList.add('token');
-                billToken.appendChild(document.createTextNode('Nro. de Comprobante:'));
-                billToken.appendChild(document.createTextNode("\u00A0"));
-                billToken.appendChild(tokenNumberElement);
-                
+                const patient = getPatientHtml(fullName, affiliateNumber);
+                const token = getTokenHtml(tokenNumber);
+
                 const bill = document.createElement('div');
-                bill.classList.add('item');
-                bill.appendChild(billPatient);
-                bill.appendChild(billToken);
+                bill.className = 'item';
+                bill.innerHTML += patient;
+                bill.innerHTML += token;
                 
                 //Append them into the list
                 items.appendChild(bill);
@@ -67,3 +46,14 @@ const displayBills = (function(){
         }
     }
 })();
+
+const getPatientHtml = (fullName, affiliateNumber) =>
+    `<div class="patient">
+        <h2 class="patient-fullname">${fullName}</h2>
+        <p class="patient-affiliate-number">Nro. de Afiliado: ${affiliateNumber}</p>
+    </div>`
+    
+const getTokenHtml = (tokenNumber) =>
+    `<h4 class="token">Nro. de Comprobante:
+        <span class="token-number">${tokenNumber}</span>
+    </h4>`
