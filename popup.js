@@ -5,19 +5,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 const displayBills = (function(){
-    const showMoreButton = document.getElementById('show-more');
-
+    const emptyElement = document.getElementById('empty-list');
+    
     return async function() {
         const savedBills = await BillService.getBills();
         
         //Hide the "show more" button
+        const showMoreButton = document.getElementById('show-more');
         showMoreButton.setAttribute('hidden', '');
         
         //Append the empty element to the items list
         const items = document.getElementById('items-list');
-        const emptyElement = document.getElementById('empty-list');
         items.innerHTML = '';
-        items.append(emptyElement)
+        items.append(emptyElement);
         
         if (savedBills.length) {
             //Show the "show more" button
@@ -27,7 +27,8 @@ const displayBills = (function(){
             items.removeChild(emptyElement);
         
             //Display max 5 bills
-            for (let i = 0; (i < savedBills.length) && (i < MAX_BILLS); i++) {
+            let maxBills = 5;
+            for (let i = 0; (i < savedBills.length) && (i < maxBills); i++) {
                 //Create the elements for the bills
                 const { fullName, affiliateNumber, tokenNumber } = savedBills[i];
                 
